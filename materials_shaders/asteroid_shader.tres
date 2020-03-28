@@ -1,0 +1,13 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform float smoothing = 0.3;
+
+void fragment() {
+	vec4 c = vec4(1.0);
+	c.a = smoothstep(0, smoothing, UV.y) - smoothstep(1.0  - smoothing, 1.0, UV.y);
+	COLOR = c;
+}"

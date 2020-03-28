@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Bullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/Mesh.gd" type="Script" id=3]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 0, -23, 8, 18, -8, 18 )
+
+[sub_resource type="ParticlesMaterial" id=2]
+flag_disable_z = true
+spread = 30.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 100.0
+angular_velocity = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 100.0
+scale = 3.0
+
+[node name="Player" type="RigidBody2D"]
+collision_mask = 2
+gravity_scale = 0.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+rotational_speed = 150.0
+bullet_speed = 300.0
+bullet_scene = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="BulletOrigin" type="Position2D" parent="."]
+position = Vector2( 0, -25 )
+
+[node name="Mesh" type="MeshInstance2D" parent="."]
+script = ExtResource( 3 )
+polygon = PoolVector2Array( 0, -25, -10, 20, 0, 8, 10, 20 )
+mesh_thickness = 8.0
+gizmo_color = Color( 1, 1, 1, 0.501961 )
+
+[node name="ThrusterEmitter" type="Particles2D" parent="."]
+position = Vector2( 0, 9 )
+rotation = 1.5708
+emitting = false
+amount = 16
+lifetime = 0.6
+speed_scale = 0.7
+local_coords = false
+process_material = SubResource( 2 )

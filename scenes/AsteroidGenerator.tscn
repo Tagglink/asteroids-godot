@@ -1,0 +1,92 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/AsteroidGenerator.gd" type="Script" id=1]
+[ext_resource path="res://scripts/Mesh.gd" type="Script" id=2]
+[ext_resource path="res://scripts/FollowViewportControl.gd" type="Script" id=3]
+
+
+[node name="AsteroidGenerator" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Mesh" type="MeshInstance2D" parent="."]
+script = ExtResource( 2 )
+polygon = PoolVector2Array(  )
+mesh_thickness = 3.0
+gizmo_color = Color( 1, 1, 1, 1 )
+
+[node name="UI" type="Control" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 640, 360 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 3 )
+
+[node name="SeedLabel" type="Label" parent="UI"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -70.0
+margin_bottom = -55.0
+text = "Seed: "
+align = 1
+
+[node name="SeedSlider" type="HSlider" parent="UI"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = -64.0
+margin_right = -32.0
+grow_horizontal = 2
+max_value = 1.0
+step = 0.001
+
+[node name="Params" type="VBoxContainer" parent="UI"]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 332.0
+margin_bottom = 88.0
+
+[node name="RadiusLabel" type="Label" parent="UI/Params"]
+margin_right = 300.0
+margin_bottom = 14.0
+text = "Radius: 0"
+
+[node name="Radius" type="HSlider" parent="UI/Params"]
+margin_top = 18.0
+margin_right = 300.0
+margin_bottom = 34.0
+min_value = 1.0
+max_value = 50.0
+value = 30.0
+
+[node name="PointsLabel" type="Label" parent="UI/Params"]
+margin_top = 38.0
+margin_right = 300.0
+margin_bottom = 52.0
+text = "Points: "
+
+[node name="Points" type="HSlider" parent="UI/Params"]
+margin_top = 56.0
+margin_right = 300.0
+margin_bottom = 72.0
+min_value = 3.0
+max_value = 20.0
+value = 8.0
+
+[node name="ScrambleLabel" type="Label" parent="UI/Params"]
+margin_top = 76.0
+margin_right = 300.0
+margin_bottom = 90.0
+text = "Scramble: "
+
+[node name="Scramble" type="HSlider" parent="UI/Params"]
+margin_top = 94.0
+margin_right = 300.0
+margin_bottom = 110.0
+max_value = 1.0
+step = 0.1
+value = 0.5

@@ -1,0 +1,1 @@
+const SCREEN_SIZE := Vector2(1024, 600)

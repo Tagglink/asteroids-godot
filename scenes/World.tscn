@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/World.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Asteroid.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 5.09506, -8.75103, 0, 0, 0, 0, 1121.69, -8.75103, 0, 0, 0, 0, 1132.03, 692.998, 0, 0, 0, 0, 6.38742, 686.536, 0, 0, 0, 0, 5.09506, -7.45867 )
+}
+
+[node name="World" type="Node2D"]
+script = ExtResource( 1 )
+asteroid_scene = ExtResource( 2 )
+
+[node name="AsteroidPath" type="Path2D" parent="."]
+position = Vector2( -50, -50 )
+curve = SubResource( 1 )
+
+[node name="AsteroidLocation" type="PathFollow2D" parent="AsteroidPath"]
+position = Vector2( 1131.28, 641.783 )
+rotation = 1.55607
+offset = 1766.04
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 87.5819, 79.1531 )
+
+[node name="AsteroidTimer" type="Timer" parent="."]

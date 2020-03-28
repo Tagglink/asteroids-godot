@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/Asteroid.gd" type="Script" id=1]
+[ext_resource path="res://scripts/Mesh.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 31.2
+
+[node name="Asteroid" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 5
+gravity_scale = 0.0
+script = ExtResource( 1 )
+poly_points = 10
+scramble_weight = 0.6
+
+[node name="Visibility" type="VisibilityNotifier2D" parent="."]
+rect = Rect2( -30, -30, 60, 60 )
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Mesh" type="MeshInstance2D" parent="."]
+script = ExtResource( 2 )
+mesh_thickness = 4.0
+gizmo_color = Color( 1, 0, 0, 1 )
